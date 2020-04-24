@@ -35,7 +35,7 @@ $preference->payment_methods = array(
 ); 
 
 $preference->back_urls = array(
-    "success" => "http://campus-ie.com.ar/notifications/success.php",
+    "success" => "http://campus-ie.com/notifications/success.php",
     "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com",
     "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com"
 );
