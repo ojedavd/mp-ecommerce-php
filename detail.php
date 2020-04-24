@@ -15,6 +15,7 @@ $item->quantity = 1;
 $item->unit_price = 75.56;
 $preference->items = array($item);
 $preference->save();
+echo "<a href='$preference->sandbox_init_point'> Pagar </a>";
 ?>
 
 <!DOCTYPE html>
