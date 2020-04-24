@@ -6,7 +6,7 @@ fclose($myfile);
 
 require __DIR__ .  '/vendor/autoload.php';
 
-MercadoPago\SDK::setAccessToken("APP_USR-8196777983571350-031822-2c462f0d08deb2f0b12e1b343176a42c-469485398");
+MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
 $merchant_order = null;
 
