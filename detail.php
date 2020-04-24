@@ -10,11 +10,61 @@ $preference = new MercadoPago\Preference();
 
 // Crea un ítem en la preferencia
 $item = new MercadoPago\Item();
-$item->title = 'Mi producto';
-$item->quantity = 1;
-$item->unit_price = 75.56;
+$item->id = '1234';
+$item->title = $_POST['title'];
+$item->description = 'Dispositivo móvil de Tienda e-commerce';
+$item->picture_url = $_POST['img'];
+$item->quantity = $_POST['unit'];
+$item->unit_price = $_POST['price'];
+
+$preference->external_reference = "ABCD1234";
+
+$payer = new MercadoPago\Payer();
+$payer->name = "Lalo";
+$payer->surname = "Landa";
+$payer->email = "test_user_63274575@testuser.com";
+$payer->phone = array(
+  "area_code" => "011",
+  "number" => "2222-3333"
+);
+
+$payer->identification = array(
+  "type" => "DNI",
+  "number" => "22333444"
+);
+
+$payer->address = array(
+  "street_name" => "Falsa",
+  "street_number" => 123,
+  "zip_code" => "1111"
+);
+
+$preference->payment_methods = array(
+    "excluded_payment_methods" => array(
+        array(
+            "id" => "amex",
+        )		
+    ),
+    "excluded_payment_types" => array(
+        array(
+            "id" => "atm"
+        )
+    ),
+    "installments" => 6
+); 
+
+$preference->back_urls = array(
+    "success" => "https://www.tu-sitio/success",
+    "failure" => "http://www.tu-sitio/failure",
+    "pending" => "http://www.tu-sitio/pending"
+);
+
+$preference->auto_return = "approved";
+
 $preference->items = array($item);
+$preference->payer = $payer;
 $preference->save();
+
 ?>
 
 <!DOCTYPE html>
@@ -149,10 +199,15 @@ $preference->save();
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <?php
-                                    echo "<a href='$preference->sandbox_init_point'> Pagar </a>";
-                                    ?>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <form action="/procesar-pago" method="POST">
+                                        <script
+                                        src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                                        data-header-color="#2D3277"
+                                        data-elements-color="#2D3277"
+                                        data-button-label="Pagar la compra"
+                                        data-preference-id="<?php echo $preference->id; ?>">
+                                        </script>
+                                    </form>
                                 </div>
                             </div>
                         </div>
