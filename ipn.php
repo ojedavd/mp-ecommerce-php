@@ -1,23 +1,40 @@
 <?php
-$myfile = fopen("log.txt", "w") or die("Unable to open file!");
-$txt = "\nCreado.\n".$_GET["topic"];
-fwrite($myfile, $txt);
-fclose($myfile);
 
 require __DIR__ .  '/vendor/autoload.php';
 
 MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
 $merchant_order = null;
+$pago = null;
 
 switch($_GET["topic"]) {
+
     case "payment":
         $payment = MercadoPago\Payment::find_by_id($_GET["id"]);
         // Get the payment and the corresponding merchant_order reported by the IPN.
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
+
+        $myfile = fopen("ordenid.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $merchant_order->id);
+        fclose($myfile);
+
+        $myfile = fopen("pagoid.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $payment->id);
+        fclose($myfile);
+
         break;
+
     case "merchant_order":
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($_GET["id"]);
+                
+        $myfile = fopen("ordenid.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $merchant_order->id);
+        fclose($myfile);
+        
+        $myfile = fopen("pagoid.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $merchant_order->payments[0]->id);
+        fclose($myfile);
+
         break;
 }
 
@@ -39,22 +56,6 @@ if($paid_amount >= $merchant_order->total_amount){
     }
 } else {
     print_r("Not paid yet. Do not release your item.");
-}
-
-
-switch($_POST["type"]) {
-    case "payment":
-        $payment = MercadoPago\Payment.find_by_id($_POST["id"]);
-        break;
-    case "plan":
-        $plan = MercadoPago\Plan.find_by_id($_POST["id"]);
-        break;
-    case "subscription":
-        $plan = MercadoPago\Subscription.find_by_id($_POST["id"]);
-        break;
-    case "invoice":
-        $plan = MercadoPago\Invoice.find_by_id($_POST["id"]);
-        break;
 }
 
 

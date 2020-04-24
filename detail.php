@@ -35,12 +35,12 @@ $preference->payment_methods = array(
 ); 
 
 $preference->back_urls = array(
-    "success" => "https://www.tu-sitio/success",
-    "failure" => "http://www.tu-sitio/failure",
-    "pending" => "http://www.tu-sitio/pending"
+    "success" => "https://ojedavd-mp-commerce-php.herokuapp.com/success.php",
+    "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com/failure.php",
+    "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com/pending.php"
 );
 
-$preference->auto_return = "approved";
+$preference->auto_return = "all";
 
 $preference->items = array($item);
 
@@ -202,7 +202,7 @@ $preference->save();
                                             <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
-                                    <form action="/procesar-pago" method="POST">
+                                    <form action="/" method="POST">
                                         <script
                                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                                         data-header-color="#2D3277"
