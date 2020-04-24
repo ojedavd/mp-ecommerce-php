@@ -25,22 +25,21 @@ switch($_GET["topic"]) {
 
     case "merchant_order":
         $merchant_order = MercadoPago\MerchantOrder::find_by_id($_GET["id"]);
-        $payment = MercadoPago\Payment::find_by_id($merchant_order->payments[0]->id);
-
+                
         $myfile = fopen("ordenid.txt", "w") or die("Unable to open file!");
         fwrite($myfile, $merchant_order->id);
         fclose($myfile);
         
         $myfile = fopen("pagoid.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $payment->id);
+        fwrite($myfile, $merchant_order->payments[0]->id);
         fclose($myfile);
 
         $myfile = fopen("success.php", "w") or die("Unable to open file!");
         $txt = "<?php"; 
-        $txt = $txt."\necho '<h2>Metodo de pago: ".$payment->payment_method_id."</h2>'; 
-                        \necho '<h2>Monto: ".$merchant_order->items[0]->unit_price."</h2>'; 
+        $txt = $txt."\necho '<h1>Pago: ".$merchant_order->payments[0]->id."</h1>'; 
                         \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
-                        \necho '<h1>Pago: ".$payment->id."</h1>';
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
                         \necho '<a href=\"https://ojedavd-mp-commerce-php.herokuapp.com/\">Volver a la tienda</a>';
                 \n?>";
         fwrite($myfile, $txt);
