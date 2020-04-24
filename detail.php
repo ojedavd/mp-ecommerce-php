@@ -36,8 +36,8 @@ $preference->payment_methods = array(
 
 $preference->back_urls = array(
     "success" => "https://ojedavd-mp-commerce-php.herokuapp.com/success.php",
-    "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com/failure.php",
-    "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com/failure.php"
+    "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com",
+    "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com"
 );
 
 $preference->auto_return = "all";
