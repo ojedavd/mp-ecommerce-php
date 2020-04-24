@@ -15,7 +15,6 @@ $item->quantity = 1;
 $item->unit_price = 75.56;
 $preference->items = array($item);
 $preference->save();
-echo "<a href='$preference->sandbox_init_point'> Pagar </a>";
 ?>
 
 <!DOCTYPE html>
@@ -150,6 +149,9 @@ echo "<a href='$preference->sandbox_init_point'> Pagar </a>";
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
+                                    <?php
+                                    echo "<a href='$preference->sandbox_init_point'> Pagar </a>";
+                                    ?>
                                     <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
                                 </div>
                             </div>
