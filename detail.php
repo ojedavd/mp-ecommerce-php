@@ -20,26 +20,6 @@ $item->unit_price = $_POST['price'];
 $preference->external_reference = "ABCD1234";
 $preference->notification_url = "http://campus-ie.com.ar/notifications/ipn.php";
 
-$payer = new MercadoPago\Payer();
-$payer->name = "Lalo";
-$payer->surname = "Landa";
-$payer->email = "test_user_63274575@testuser.com";
-$payer->phone = array(
-  "area_code" => "011",
-  "number" => "2222-3333"
-);
-
-$payer->identification = array(
-  "type" => "DNI",
-  "number" => "22333444"
-);
-
-$payer->address = array(
-  "street_name" => "Falsa",
-  "street_number" => 123,
-  "zip_code" => "1111"
-);
-
 $preference->payment_methods = array(
     "excluded_payment_methods" => array(
         array(
@@ -63,7 +43,29 @@ $preference->back_urls = array(
 $preference->auto_return = "approved";
 
 $preference->items = array($item);
+
+$payer = new MercadoPago\Payer();
+$payer->name = "Lalo";
+$payer->surname = "Landa";
+$payer->email = "test_user_63274575@testuser.com";
+$payer->phone = array(
+  "area_code" => "011",
+  "number" => "2222-3333"
+);
+
+$payer->identification = array(
+  "type" => "DNI",
+  "number" => "22333444"
+);
+
+$payer->address = array(
+  "street_name" => "Falsa",
+  "street_number" => 123,
+  "zip_code" => "1111"
+);
+
 $preference->payer = $payer;
+
 $preference->save();
 
 ?>
