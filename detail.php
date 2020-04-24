@@ -35,7 +35,7 @@ $preference->payment_methods = array(
 ); 
 
 $preference->back_urls = array(
-    "success" => "https://ojedavd-mp-commerce-php.herokuapp.com/success.php",
+    "success" => "http://campus-ie.com.ar/notifications/success.php",
     "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com",
     "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com"
 );
@@ -202,7 +202,7 @@ $preference->save();
                                             <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
-                                    <form action="/success.php" method="POST">
+                                    <form action="/procesar-pago" method="POST">
                                         <script
                                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                                         data-header-color="#2D3277"

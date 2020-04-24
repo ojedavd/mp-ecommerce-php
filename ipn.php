@@ -5,7 +5,6 @@ require __DIR__ .  '/vendor/autoload.php';
 MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
 $merchant_order = null;
-$pago = null;
 
 switch($_GET["topic"]) {
 
@@ -35,8 +34,20 @@ switch($_GET["topic"]) {
         fwrite($myfile, $merchant_order->payments[0]->id);
         fclose($myfile);
 
+        $myfile = fopen("success.php", "w") or die("Unable to open file!");
+        $txt = "<?php \necho '<h1>Pago: ".$merchant_order->payments[0]->id."</h1>'; 
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                \n?>";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
         break;
 }
+
+
+
 
 $paid_amount = 0;
 foreach ($merchant_order->payments as $payment) {
