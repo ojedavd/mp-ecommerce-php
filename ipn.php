@@ -21,6 +21,17 @@ switch($_GET["topic"]) {
         fwrite($myfile, $payment->id);
         fclose($myfile);
 
+        $myfile = fopen("success.php", "w") or die("Unable to open file!");
+        $txt = "<?php"; 
+        $txt = $txt."\necho '<h1>Pago: ".$payment->id."</h1>'; 
+                        \necho '<h2>Monto: ".$merchant_order->items[0]->unit_price."</h2>'; 
+                        \necho '<h2>Metodo: ".$payment->payment_method_id."</h2>'; 
+                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                        \necho '<a href=\"https://ojedavd-mp-commerce-php.herokuapp.com/\">Volver a la tienda</a>';
+                \n?>";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
         break;
 
     case "merchant_order":
@@ -37,8 +48,8 @@ switch($_GET["topic"]) {
         $myfile = fopen("success.php", "w") or die("Unable to open file!");
         $txt = "<?php"; 
         $txt = $txt."\necho '<h1>Pago: ".$merchant_order->payments[0]->id."</h1>'; 
-                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
-                        \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
+                        \necho '<h2>Monto: ".$merchant_order->id."</h2>'; 
+                        \necho '<h2>Metodo: ".$merchant_order->id."</h2>'; 
                         \necho '<h2>Orden: ".$merchant_order->id."</h2>'; 
                         \necho '<a href=\"https://ojedavd-mp-commerce-php.herokuapp.com/\">Volver a la tienda</a>';
                 \n?>";
