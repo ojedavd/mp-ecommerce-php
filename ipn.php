@@ -1,6 +1,8 @@
 <?php
 $myfile = fopen("log.txt", "w") or die("Unable to open file!");
 
+require __DIR__ .  '/vendor/autoload.php';
+
 MercadoPago\SDK::setAccessToken("APP_USR-8196777983571350-031822-2c462f0d08deb2f0b12e1b343176a42c-469485398");
 
 switch($_POST["type"]) {
