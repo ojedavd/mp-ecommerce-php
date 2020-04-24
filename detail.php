@@ -3,7 +3,7 @@
 require __DIR__ .  '/vendor/autoload.php';
 
 // Agrega credenciales
-MercadoPago\SDK::setAccessToken('APP_USR-8196777983571350-042414-0a4eebcea5beb5ed8db3d88765d539f6-469485398');
+MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
 
 // Crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
@@ -37,7 +37,7 @@ $preference->payment_methods = array(
 $preference->back_urls = array(
     "success" => "https://ojedavd-mp-commerce-php.herokuapp.com/success.php",
     "failure" => "https://ojedavd-mp-commerce-php.herokuapp.com/failure.php",
-    "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com/pending.php"
+    "pending" => "https://ojedavd-mp-commerce-php.herokuapp.com/failure.php"
 );
 
 $preference->auto_return = "all";
@@ -202,7 +202,7 @@ $preference->save();
                                             <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                     </div>
-                                    <form action="/" method="POST">
+                                    <form action="/procesar-pago" method="POST">
                                         <script
                                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                                         data-header-color="#2D3277"
