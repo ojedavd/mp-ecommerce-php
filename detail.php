@@ -18,6 +18,7 @@ $item->quantity = $_POST['unit'];
 $item->unit_price = $_POST['price'];
 
 $preference->external_reference = "ABCD1234";
+$preference->notification_url = "http://campus-ie.com.ar/notifications/ipn.php";
 
 $payer = new MercadoPago\Payer();
 $payer->name = "Lalo";
